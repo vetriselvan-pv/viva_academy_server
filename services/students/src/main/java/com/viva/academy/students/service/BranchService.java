@@ -22,8 +22,8 @@ public class BranchService {
     public BranchResponseDto createBranch(BranchRequestDto request) {
         Long nextBranchCode  = branchRepository.getBranchCode();
         String generatedCode = String.format("BRA%03d", nextBranchCode);
-        BranchEntity branchEntity = BranchEntity.builder().branchCode(generatedCode).branchName(request.branchName()).email(request.email())
-                .address(request.address()).phone(request.phone()).city(request.city()).state(request.state()).status(request.status()).build();
+        BranchEntity branchEntity = BranchEntity.builder().branchId(generatedCode).branchName(request.branchName()).email(request.email())
+                .address(request.address()).phone(request.phone()).city(request.city()).status(request.status()).build();
         BranchEntity savedBranchEntity = branchRepository.save(branchEntity);
         return transformToResponse(savedBranchEntity);
     }
@@ -31,7 +31,7 @@ public class BranchService {
     @Transactional
     public BranchResponseDto updateBranch(BranchRequestDto request) {
         BranchEntity branchEntity = BranchEntity.builder().branchName(request.branchName()).email(request.email())
-                .address(request.address()).phone(request.phone()).city(request.city()).state(request.state()).status(request.status()).build();
+                .address(request.address()).phone(request.phone()).city(request.city()).status(request.status()).build();
         BranchEntity savedBranchEntity = branchRepository.save(branchEntity);
         return transformToResponse(savedBranchEntity);
     }
@@ -46,9 +46,14 @@ public class BranchService {
         return branches;
     }
 
+    @Transactional(readOnly = true)
+    public BranchResponseDto getBranch(String branchName) {
+        return branchRepository.findById(branchName).map(this::transformToResponse).orElse(null);
+    }
+
     private BranchResponseDto transformToResponse(BranchEntity branch){
-        return new BranchResponseDto(branch.getBranchId(), branch.getBranchName(), branch.getBranchCode(), branch.getAddress(),
-                branch.getCity(), branch.getState(), branch.getEmail(), branch.getPhone(), branch.getCreatedAt(), branch.getStatus());
+        return new BranchResponseDto(branch.getBranchId(), branch.getBranchName(), branch.getAddress(),
+                branch.getCity(), branch.getEmail(), branch.getPhone(), branch.getCreatedAt(), branch.getStatus());
     }
 
 }

@@ -18,12 +18,8 @@ import java.time.OffsetDateTime;
 public class BranchEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "BRANCH_ID", nullable = false )
-    private Long branchId;
-
-    @Column(name = "BRANCH_CODE", unique = true, nullable = false)
-    private String branchCode;
+    private String branchId;
 
     @Column(name = "BRANCH_NAME", nullable = false)
     private String branchName;
@@ -33,9 +29,6 @@ public class BranchEntity {
 
     @Column(name = "CITY", nullable = false)
     private String city;
-
-    @Column(name = "STATE", nullable = false)
-    private String state;
 
     @Column(name = "PHONE")
     private String phone;

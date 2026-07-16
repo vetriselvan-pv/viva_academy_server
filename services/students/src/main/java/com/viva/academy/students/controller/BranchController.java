@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/")
+@RequestMapping("/v1/branches")
 @RequiredArgsConstructor
 public class BranchController {
 
@@ -28,5 +28,11 @@ public class BranchController {
     public ResponseEntity<List<BranchResponseDto>> getBranch() {
         List<BranchResponseDto> response = branchService.getBranches();
         return new ResponseEntity<List<BranchResponseDto>>(response, HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<BranchResponseDto> getBranchById(@RequestParam String branchId){
+        BranchResponseDto response = branchService.getBranch(branchId);
+        return new ResponseEntity<BranchResponseDto>(response, HttpStatus.OK);
     }
 }
