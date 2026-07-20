@@ -21,6 +21,8 @@
     <modules>
         <module>infrastructure/discovery</module>
         <module>services/students</module>
+        <module>services/admin</module>
+        <module>services/auth</module>
     </modules>
 
     <dependencyManagement>
