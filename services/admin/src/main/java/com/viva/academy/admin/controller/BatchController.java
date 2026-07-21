@@ -1,7 +1,7 @@
 package com.viva.academy.admin.controller;
 
 import com.viva.academy.admin.dto.request.BatchRequestDto;
-import com.viva.academy.admin.dto.response.ApiResponse;
+import com.viva.academy.common.dto.response.ApiResponse;
 import com.viva.academy.admin.dto.response.BatchResponseDto;
 import com.viva.academy.admin.service.BatchService;
 import jakarta.validation.Valid;

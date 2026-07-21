@@ -1,4 +1,4 @@
-package com.viva.academy.auth.dto.response;
+package com.viva.academy.common.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

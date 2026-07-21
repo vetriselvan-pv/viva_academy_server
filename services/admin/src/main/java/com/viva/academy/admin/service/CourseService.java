@@ -5,7 +5,7 @@ import com.viva.academy.admin.dto.request.CourseRequestDto;
 import com.viva.academy.admin.dto.response.CourseResponseDto;
 import com.viva.academy.admin.model.CoursesEntity;
 import com.viva.academy.admin.repository.CourseRepository;
-import com.viva.academy.admin.exception.ResourceNotFoundException;
+import com.viva.academy.common.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

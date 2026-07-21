@@ -5,7 +5,7 @@ import com.viva.academy.admin.dto.response.BranchResponseDto;
 import com.viva.academy.admin.model.BranchEntity;
 import com.viva.academy.admin.repository.BranchRepository;
 import lombok.RequiredArgsConstructor;
-import com.viva.academy.admin.exception.ResourceNotFoundException;
+import com.viva.academy.common.exception.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;

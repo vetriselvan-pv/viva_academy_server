@@ -1,7 +1,7 @@
 package com.viva.academy.auth.controller;
 
 import com.viva.academy.auth.dto.request.UserRequestDto;
-import com.viva.academy.auth.dto.response.ApiResponse;
+import com.viva.academy.common.dto.response.ApiResponse;
 import com.viva.academy.auth.dto.response.UserResponseDto;
 import com.viva.academy.auth.service.UserService;
 import jakarta.validation.Valid;

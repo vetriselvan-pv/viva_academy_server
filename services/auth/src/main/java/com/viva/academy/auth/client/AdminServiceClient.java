@@ -1,6 +1,6 @@
 package com.viva.academy.auth.client;
 
-import com.viva.academy.auth.dto.response.ApiResponse;
+import com.viva.academy.common.dto.response.ApiResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

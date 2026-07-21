@@ -2,7 +2,7 @@ package com.viva.academy.auth.controller;
 
 
 import com.viva.academy.auth.dto.request.RolesRequestDto;
-import com.viva.academy.auth.dto.response.ApiResponse;
+import com.viva.academy.common.dto.response.ApiResponse;
 import com.viva.academy.auth.dto.response.RolesResponseDto;
 import com.viva.academy.auth.service.RoleService;
 import jakarta.validation.Valid;

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import com.viva.academy.admin.exception.ResourceNotFoundException;
+import com.viva.academy.common.exception.ResourceNotFoundException;
 
 @Service
 @RequiredArgsConstructor

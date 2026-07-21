@@ -1,6 +1,6 @@
-package com.viva.academy.auth.exception;
+package com.viva.academy.common.exception;
 
-import com.viva.academy.auth.dto.response.ApiResponse;
+import com.viva.academy.common.dto.response.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;

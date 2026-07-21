@@ -1,7 +1,7 @@
 package com.viva.academy.admin.controller;
 
 import com.viva.academy.admin.dto.request.CourseRequestDto;
-import com.viva.academy.admin.dto.response.ApiResponse;
+import com.viva.academy.common.dto.response.ApiResponse;
 import com.viva.academy.admin.dto.response.CourseResponseDto;
 import com.viva.academy.admin.service.CourseService;
 import jakarta.validation.Valid;

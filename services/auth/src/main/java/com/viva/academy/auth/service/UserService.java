@@ -6,7 +6,7 @@ import com.viva.academy.auth.enums.UserStatus;
 import com.viva.academy.auth.model.RoleEntity;
 import com.viva.academy.auth.model.UsersEntity;
 import com.viva.academy.auth.client.AdminServiceClient;
-import com.viva.academy.auth.dto.response.ApiResponse;
+import com.viva.academy.common.dto.response.ApiResponse;
 import com.viva.academy.auth.repository.RoleRepository;
 import com.viva.academy.auth.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,7 @@ import feign.FeignException;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
-import com.viva.academy.auth.exception.ResourceNotFoundException;
+import com.viva.academy.common.exception.ResourceNotFoundException;
 
 @Service
 @RequiredArgsConstructor

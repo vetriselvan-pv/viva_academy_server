@@ -2,7 +2,7 @@ package com.viva.academy.auth.controller;
 
 
 import com.viva.academy.auth.dto.request.PermissionRequestDto;
-import com.viva.academy.auth.dto.response.ApiResponse;
+import com.viva.academy.common.dto.response.ApiResponse;
 import com.viva.academy.auth.dto.response.PermissionResponseDto;
 import com.viva.academy.auth.service.PermissionService;
 import jakarta.validation.Valid;

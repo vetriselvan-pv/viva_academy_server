@@ -61,6 +61,10 @@
 			<artifactId>spring-boot-starter-webmvc-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.viva.academy</groupId>
+			<artifactId>common</artifactId>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

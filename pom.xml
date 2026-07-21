@@ -19,6 +19,7 @@
     </properties>
 
     <modules>
+        <module>infrastructure/common</module>
         <module>infrastructure/discovery</module>
         <module>services/students</module>
         <module>services/admin</module>
@@ -33,6 +34,11 @@
                 <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.viva.academy</groupId>
+                <artifactId>common</artifactId>
+                <version>${project.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
