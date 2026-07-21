@@ -8,8 +8,6 @@ import lombok.RequiredArgsConstructor;
 import com.viva.academy.admin.exception.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,10 +19,12 @@ public class BranchService {
 
     @Transactional
     public BranchResponseDto createBranch(BranchRequestDto request) {
-        Long nextBranchCode  = branchRepository.getBranchCode();
+        Long nextBranchCode = branchRepository.getBranchCode();
         String generatedCode = String.format("BRA%03d", nextBranchCode);
-        BranchEntity branchEntity = BranchEntity.builder().branchId(generatedCode).branchName(request.branchName()).email(request.email())
-                .address(request.address()).phone(request.phone()).city(request.city()).status(request.status()).build();
+        BranchEntity branchEntity = BranchEntity.builder().branchId(generatedCode).branchName(request.branchName())
+                .email(request.email())
+                .address(request.address()).phone(request.phone()).city(request.city()).status(request.status())
+                .build();
         BranchEntity savedBranchEntity = branchRepository.save(branchEntity);
         return transformToResponse(savedBranchEntity);
     }
@@ -32,7 +32,8 @@ public class BranchService {
     @Transactional
     public BranchResponseDto updateBranch(BranchRequestDto request) {
         BranchEntity branchEntity = BranchEntity.builder().branchName(request.branchName()).email(request.email())
-                .address(request.address()).phone(request.phone()).city(request.city()).status(request.status()).build();
+                .address(request.address()).phone(request.phone()).city(request.city()).status(request.status())
+                .build();
         BranchEntity savedBranchEntity = branchRepository.save(branchEntity);
         return transformToResponse(savedBranchEntity);
     }
@@ -53,7 +54,7 @@ public class BranchService {
                 .orElseThrow(() -> new ResourceNotFoundException("Branch not found with ID/Name: " + branchName));
     }
 
-    private BranchResponseDto transformToResponse(BranchEntity branch){
+    private BranchResponseDto transformToResponse(BranchEntity branch) {
         return new BranchResponseDto(branch.getBranchId(), branch.getBranchName(), branch.getAddress(),
                 branch.getCity(), branch.getEmail(), branch.getPhone(), branch.getCreatedAt(), branch.getStatus());
     }

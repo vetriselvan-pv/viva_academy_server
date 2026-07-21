@@ -4,7 +4,10 @@ package com.viva.academy.admin.model;
 import com.viva.academy.admin.enums.BranchStatus;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.OffsetDateTime;
@@ -43,7 +46,19 @@ public class BranchEntity {
     private BranchStatus status;
 
     @CreatedDate
-    @Column(name = "CREATED_AT", updatable = false,  nullable = false)
+    @Column(name = "CREATED_AT", updatable = false, nullable = false)
     private OffsetDateTime createdAt;
+
+    @LastModifiedDate
+    @Column(name = "UPDATED_AT")
+    private OffsetDateTime updatedAt;
+
+    @CreatedBy
+    @Column(name = "CREATED_BY", updatable = false)
+    private String createdBy;
+
+    @LastModifiedBy
+    @Column(name = "UPDATED_BY")
+    private String updatedBy;
 
 }

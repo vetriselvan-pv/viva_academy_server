@@ -2,11 +2,17 @@ package com.viva.academy.admin.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.OffsetDateTime;
 
 @Entity
 @Table(name = "BATCHES")
+@EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
 @NoArgsConstructor
@@ -38,4 +44,20 @@ public class BatchesEntity {
 
     @Column(name = "CAPACITY")
     private Integer capacity;
+
+    @CreatedDate
+    @Column(name = "CREATED_AT", updatable = false)
+    private OffsetDateTime createdAt;
+
+    @LastModifiedDate
+    @Column(name = "UPDATED_AT")
+    private OffsetDateTime updatedAt;
+
+    @CreatedBy
+    @Column(name = "CREATED_BY", updatable = false)
+    private String createdBy;
+
+    @LastModifiedBy
+    @Column(name = "UPDATED_BY")
+    private String updatedBy;
 }
