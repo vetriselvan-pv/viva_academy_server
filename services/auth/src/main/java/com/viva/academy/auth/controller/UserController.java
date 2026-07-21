@@ -1,6 +1,7 @@
 package com.viva.academy.auth.controller;
 
 import com.viva.academy.auth.dto.request.UserRequestDto;
+import com.viva.academy.auth.dto.response.ApiResponse;
 import com.viva.academy.auth.dto.response.UserResponseDto;
 import com.viva.academy.auth.service.UserService;
 import jakarta.validation.Valid;
@@ -18,21 +19,21 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    public ResponseEntity<UserResponseDto> saveUser(@Valid @RequestBody UserRequestDto request) {
+    public ResponseEntity<ApiResponse<UserResponseDto>> saveUser(@Valid @RequestBody UserRequestDto request) {
         UserResponseDto response = userService.saveUser(request);
         URI location = URI.create("/v1/users/" + response.userId());
-        return ResponseEntity.created(location).body(response);
+        return ResponseEntity.created(location).body(ApiResponse.success(response, "User created successfully"));
     }
 
     @GetMapping
-    public ResponseEntity<List<UserResponseDto>> fetchUsers() {
+    public ResponseEntity<ApiResponse<List<UserResponseDto>>> fetchUsers() {
         List<UserResponseDto> response = userService.fetchAllUsers();
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(ApiResponse.success(response, "Users fetched successfully"));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserResponseDto> fetchUserById(@PathVariable("id") String id) {
+    public ResponseEntity<ApiResponse<UserResponseDto>> fetchUserById(@PathVariable("id") String id) {
         UserResponseDto response = userService.fetchUserById(id);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(ApiResponse.success(response, "User fetched successfully"));
     }
 }

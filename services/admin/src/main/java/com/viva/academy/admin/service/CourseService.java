@@ -5,6 +5,7 @@ import com.viva.academy.admin.dto.request.CourseRequestDto;
 import com.viva.academy.admin.dto.response.CourseResponseDto;
 import com.viva.academy.admin.model.CoursesEntity;
 import com.viva.academy.admin.repository.CourseRepository;
+import com.viva.academy.admin.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,7 +33,8 @@ public class CourseService {
 
     @Transactional(readOnly = true)
     public CourseResponseDto fetchCourseById(Long id){
-        return courseRepository.findById(id).map(this::transformToResponse).orElse(null);
+        return courseRepository.findById(id).map(this::transformToResponse)
+                .orElseThrow(() -> new ResourceNotFoundException("Course not found with ID: " + id));
     }
 
 

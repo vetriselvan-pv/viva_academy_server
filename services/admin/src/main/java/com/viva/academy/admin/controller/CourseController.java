@@ -1,6 +1,7 @@
 package com.viva.academy.admin.controller;
 
 import com.viva.academy.admin.dto.request.CourseRequestDto;
+import com.viva.academy.admin.dto.response.ApiResponse;
 import com.viva.academy.admin.dto.response.CourseResponseDto;
 import com.viva.academy.admin.service.CourseService;
 import jakarta.validation.Valid;
@@ -20,22 +21,22 @@ public class CourseController {
     private final CourseService courseService;
 
     @PostMapping
-    public ResponseEntity<CourseResponseDto> saveCourse(@Valid @RequestBody CourseRequestDto request){
+    public ResponseEntity<ApiResponse<CourseResponseDto>> saveCourse(@Valid @RequestBody CourseRequestDto request){
         CourseResponseDto response = courseService.saveCourse(request);
         URI location = URI.create("/v1/courses/" + response.courseId());
-        return ResponseEntity.created(location).body(response);
+        return ResponseEntity.created(location).body(ApiResponse.success(response, "Course created successfully"));
     }
 
     @GetMapping
-    public ResponseEntity<List<CourseResponseDto>> fetchCourse(){
+    public ResponseEntity<ApiResponse<List<CourseResponseDto>>> fetchCourse(){
         List<CourseResponseDto> response = courseService.fetchAllCourse();
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(ApiResponse.success(response, "Courses fetched successfully"));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CourseResponseDto> fetchCourseById(@RequestParam Long id){
+    public ResponseEntity<ApiResponse<CourseResponseDto>> fetchCourseById(@RequestParam Long id){
         CourseResponseDto response = courseService.fetchCourseById(id);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(ApiResponse.success(response, "Course fetched successfully"));
     }
     
 }

@@ -1,6 +1,7 @@
 package com.viva.academy.admin.controller;
 
 import com.viva.academy.admin.dto.request.BatchRequestDto;
+import com.viva.academy.admin.dto.response.ApiResponse;
 import com.viva.academy.admin.dto.response.BatchResponseDto;
 import com.viva.academy.admin.service.BatchService;
 import jakarta.validation.Valid;
@@ -18,21 +19,21 @@ public class BatchController {
     private final BatchService batchService;
 
     @PostMapping
-    public ResponseEntity<BatchResponseDto> saveBatch(@Valid @RequestBody BatchRequestDto request) {
+    public ResponseEntity<ApiResponse<BatchResponseDto>> saveBatch(@Valid @RequestBody BatchRequestDto request) {
         BatchResponseDto response = batchService.saveBatch(request);
         URI location = URI.create("/v1/batches/" + response.batchId());
-        return ResponseEntity.created(location).body(response);
+        return ResponseEntity.created(location).body(ApiResponse.success(response, "Batch created successfully"));
     }
 
     @GetMapping
-    public ResponseEntity<List<BatchResponseDto>> fetchBatches() {
+    public ResponseEntity<ApiResponse<List<BatchResponseDto>>> fetchBatches() {
         List<BatchResponseDto> response = batchService.fetchAllBatches();
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(ApiResponse.success(response, "Batches fetched successfully"));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<BatchResponseDto> fetchBatchById(@PathVariable("id") Long id) {
+    public ResponseEntity<ApiResponse<BatchResponseDto>> fetchBatchById(@PathVariable("id") Long id) {
         BatchResponseDto response = batchService.fetchBatchById(id);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(ApiResponse.success(response, "Batch fetched successfully"));
     }
 }

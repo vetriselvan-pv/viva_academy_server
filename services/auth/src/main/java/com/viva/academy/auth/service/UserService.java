@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
+import com.viva.academy.auth.exception.ResourceNotFoundException;
 
 @Service
 @RequiredArgsConstructor
@@ -22,7 +23,7 @@ public class UserService {
 
     public UserResponseDto saveUser(UserRequestDto request) {
         RoleEntity role = roleRepository.findById(request.roleId())
-                .orElseThrow(() -> new RuntimeException("Role not found with id: " + request.roleId()));
+                .orElseThrow(() -> new ResourceNotFoundException("Role not found with id: " + request.roleId()));
 
         UsersEntity entity = UsersEntity.builder()
                 .userId(request.userId())
@@ -48,7 +49,7 @@ public class UserService {
 
     public UserResponseDto fetchUserById(String id) {
         UsersEntity entity = userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
         return mapToResponse(entity);
     }
 

@@ -2,6 +2,7 @@ package com.viva.academy.auth.controller;
 
 
 import com.viva.academy.auth.dto.request.RolesRequestDto;
+import com.viva.academy.auth.dto.response.ApiResponse;
 import com.viva.academy.auth.dto.response.RolesResponseDto;
 import com.viva.academy.auth.service.RoleService;
 import jakarta.validation.Valid;
@@ -20,15 +21,15 @@ public class RolesController {
     private final RoleService roleService;
 
     @PostMapping
-    public ResponseEntity<RolesResponseDto> createRoles(@Valid @RequestBody RolesRequestDto request) {
+    public ResponseEntity<ApiResponse<RolesResponseDto>> createRoles(@Valid @RequestBody RolesRequestDto request) {
         RolesResponseDto response = roleService.saveRole(request);
-        return new ResponseEntity<RolesResponseDto>(response, HttpStatus.CREATED);
+        return new ResponseEntity<>(ApiResponse.success(response, "Role created successfully"), HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<List<RolesResponseDto>> getRoles(){
+    public ResponseEntity<ApiResponse<List<RolesResponseDto>>> getRoles(){
         List<RolesResponseDto> response = roleService.findAllRoles();
-        return new ResponseEntity<List<RolesResponseDto>>(response,HttpStatus.OK);
+        return new ResponseEntity<>(ApiResponse.success(response, "Roles fetched successfully"),HttpStatus.OK);
     }
 
 }

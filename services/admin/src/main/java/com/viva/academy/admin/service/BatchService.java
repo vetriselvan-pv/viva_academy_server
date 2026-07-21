@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import com.viva.academy.admin.exception.ResourceNotFoundException;
 
 @Service
 @RequiredArgsConstructor
@@ -23,10 +24,10 @@ public class BatchService {
 
     public BatchResponseDto saveBatch(BatchRequestDto request) {
         CoursesEntity course = courseRepository.findById(request.courseId())
-                .orElseThrow(() -> new RuntimeException("Course not found with id: " + request.courseId()));
+                .orElseThrow(() -> new ResourceNotFoundException("Course not found with id: " + request.courseId()));
         
         BranchEntity branch = branchRepository.findById(request.branchId())
-                .orElseThrow(() -> new RuntimeException("Branch not found with id: " + request.branchId()));
+                .orElseThrow(() -> new ResourceNotFoundException("Branch not found with id: " + request.branchId()));
 
         BatchesEntity entity = BatchesEntity.builder()
                 .course(course)
@@ -49,7 +50,7 @@ public class BatchService {
 
     public BatchResponseDto fetchBatchById(Long id) {
         BatchesEntity entity = batchRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Batch not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Batch not found with id: " + id));
         return mapToResponse(entity);
     }
 

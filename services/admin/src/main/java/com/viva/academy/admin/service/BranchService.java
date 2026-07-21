@@ -5,6 +5,7 @@ import com.viva.academy.admin.dto.response.BranchResponseDto;
 import com.viva.academy.admin.model.BranchEntity;
 import com.viva.academy.admin.repository.BranchRepository;
 import lombok.RequiredArgsConstructor;
+import com.viva.academy.admin.exception.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,7 +49,8 @@ public class BranchService {
 
     @Transactional(readOnly = true)
     public BranchResponseDto getBranch(String branchName) {
-        return branchRepository.findById(branchName).map(this::transformToResponse).orElse(null);
+        return branchRepository.findById(branchName).map(this::transformToResponse)
+                .orElseThrow(() -> new ResourceNotFoundException("Branch not found with ID/Name: " + branchName));
     }
 
     private BranchResponseDto transformToResponse(BranchEntity branch){
