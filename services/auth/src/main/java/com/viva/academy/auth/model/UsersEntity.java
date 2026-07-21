@@ -26,7 +26,7 @@ public class UsersEntity {
     private String userId;
 
     @Column(name = "BRANCH_ID", nullable = false)
-    private Long branchId;
+    private String branchId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ROLE_ID", nullable = false)

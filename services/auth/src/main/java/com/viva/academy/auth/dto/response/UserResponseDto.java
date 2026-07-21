@@ -6,7 +6,7 @@ import java.time.ZonedDateTime;
 
 public record UserResponseDto(
         String userId,
-        Long branchId,
+        String branchId,
         String roleId,
         String name,
         String email,

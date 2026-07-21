@@ -10,8 +10,8 @@ public record UserRequestDto(
         @Size(max = 15, message = "User ID must be up to 15 characters")
         String userId,
 
-        @NotNull(message = "Branch ID is required")
-        Long branchId,
+        @NotBlank(message = "Branch ID is required")
+        String branchId,
 
         @NotBlank(message = "Role ID is required")
         String roleId,
