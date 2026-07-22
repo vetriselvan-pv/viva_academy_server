@@ -21,6 +21,7 @@
     <modules>
         <module>infrastructure/common</module>
         <module>infrastructure/discovery</module>
+        <module>infrastructure/gateway</module>
         <module>services/students</module>
         <module>services/admin</module>
         <module>services/auth</module>
